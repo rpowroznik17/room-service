@@ -1,5 +1,6 @@
 <template>
     <h1>Menu</h1>
+    <router-link to="/create-offer">CreateOffer</router-link>
     <button @click="handleSignOut" v-if="isLoggedIn">Logout</button>
 </template>
 
