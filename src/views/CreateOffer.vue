@@ -1,6 +1,6 @@
+
 <template>
   <h1>Create an Offer</h1>
-
   <input type="text" placeholder="Title" v-model="title" required />
   <input
     type="number"
@@ -19,22 +19,19 @@
     <input type="file" @change="handleFileUpload" />
     <img :src="imageUrl" v-if="imageUrl" />
   </div>
-  <div id = "map" style = "width: 900px; height: 580px"></div>
-
-  <button @click="createOffer">Finish</button>
+  <div id="map" style="width: 900px; height: 580px"></div>
+<button @click="createOffer">Finish</button>
 </template>
 
 <script setup>
-// Import the necessary Firebase modules
 import { onMounted } from "vue";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { getAuth } from "firebase/auth";
-import { addDoc, collection, GeoPoint } from 'firebase/firestore'
+import { addDoc, collection, GeoPoint } from "firebase/firestore";
 import { useRouter } from "vue-router";
-import { db } from "../main.js"
+import { db } from "../main.js";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-
 
 const title = ref("");
 const max_amount_of_people = ref("");
@@ -43,12 +40,9 @@ const description = ref("");
 const router = useRouter();
 let locationLatitude;
 let locationLongitude;
-// Declare a reactive variable to store the image URL
 const imageUrl = ref(null);
 
-// Declare a method to handle file uploads
 const handleFileUpload = (event) => {
-  // Get the uploaded file
   const file = event.target.files[0];
 
   // Create a storage reference with a unique filename
@@ -57,9 +51,7 @@ const handleFileUpload = (event) => {
   // Upload the file to Firebase Storage
   uploadBytes(storageRef, file)
     .then((snapshot) => {
-      // Get the download URL for the file
       snapshot.ref.getDownloadURL().then((downloadURL) => {
-        // Set the imageUrl variable to the download URL
         imageUrl.value = downloadURL;
       });
     })
@@ -77,7 +69,7 @@ const createOffer = () => {
     description: description.value,
     ownerId: auth.currentUser.uid,
     location: new GeoPoint(locationLatitude, locationLongitude),
-    imageURL: imageUrl, // Include the imageUrl value
+    imageURL: imageUrl.value,
   })
     .then((data) => {
       console.log("Successfully placed an offer");
@@ -89,27 +81,24 @@ const createOffer = () => {
     });
 };
 onMounted(() => {
-    navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-        // Show a map centered at latitude / longitude.
-        var mapOptions = {
-            center: [latitude, longitude],
-            zoom: 10
-            }
-            
-            var map = new L.map('map', mapOptions);
-            
-            var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-            
-            map.addLayer(layer);
+  navigator.geolocation.getCurrentPosition((position) => {
+    const { latitude, longitude } = position.coords;
+    // Show a map centered at latitude / longitude.
+    var mapOptions = {
+      center: [latitude, longitude],
+      zoom: 10,
+    };
 
-            map.on("click", (event) => {
-                locationLatitude = event.latlng.lat;
-                locationLongitude = event.latlng.lng;
-            });
+    var map = new L.map("map", mapOptions);
+
+    var layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+
+    map.addLayer(layer);
+
+    map.on("click", (event) => {
+      locationLatitude = event.latlng.lat;
+      locationLongitude = event.latlng.lng;
     });
+  });
 });
 </script>
-
-<!-- Add the file input and image display to the template -->
-
