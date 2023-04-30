@@ -7,6 +7,10 @@
         <p>Price per night: {{ offer.price_per_night }} zł</p>
         <p> Max amount of people: {{ offer.max_amount_of_people }}</p>
         <p>Description: {{ offer.description }}</p>
+        <router-link :to="{ name: 'OfferDetails', params: { id: offer.id } }">
+          Check offer
+        </router-link>
+
       </li>
     </ul>
   </div>
