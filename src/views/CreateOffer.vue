@@ -1,19 +1,8 @@
-
 <template>
   <h1>Create an Offer</h1>
   <input type="text" placeholder="Title" v-model="title" required />
-  <input
-    type="number"
-    placeholder="Max amount of people"
-    v-model="max_amount_of_people"
-    required
-  />
-  <input
-    type="number"
-    placeholder="Price per night"
-    v-model="price_per_night"
-    required
-  />
+  <input type="number" placeholder="Max amount of people" v-model="max_amount_of_people" required/>
+  <input type="number" placeholder="Price per night" v-model="price_per_night" required/>
   <textarea placeholder="Description" v-model="description"></textarea>
   <div>
     <input type="file" @change="handleFileUpload" />

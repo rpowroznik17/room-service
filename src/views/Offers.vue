@@ -1,4 +1,5 @@
 <template>
+  <router-link to="/menu">Go back to menu</router-link>
   <h1>Find your perfect accomodation</h1>
   <div>
     <ul>
