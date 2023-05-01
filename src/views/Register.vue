@@ -1,11 +1,14 @@
 <template>
     <h1>Create an Account</h1>
-    <input type="text" placeholder="Email" v-model="email"/>
-    <input type="password" placeholder="Password" v-model="password"/>
-    <input type="text" placeholder="Name" v-model="name"/>
-    <input type="text" placeholder="Surname" v-model="surname"/>
-    <input type="text" placeholder="Bio" v-model="bio"/>
-    <button @click="register">Submit</button>
+    <div class="container">
+      <input type="text" placeholder="Email" v-model="email"/>
+      <input type="password" placeholder="Password" v-model="password"/>
+      <input type="text" placeholder="Name" v-model="name"/>
+      <input type="text" placeholder="Surname" v-model="surname"/>
+      <input type="text" placeholder="Bio" v-model="bio"/>
+      <button @click="register">Submit</button>
+    </div>
+    
 </template>
 
 <script setup>
@@ -47,5 +50,6 @@ const register = () => {
 </script>
 
 <style>
-
+h1{text-align: center;}
+div{text-align: center;}
 </style>

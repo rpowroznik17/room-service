@@ -1,9 +1,12 @@
 <template>
     <h1>Log in to an Account</h1>
     <p v-if="errorMsg">{{ errorMsg }}</p>
-    <input type="text" placeholder="Email" v-model="email"/>
-    <input type="password" placeholder="Password" v-model="password"/>
-    <button @click="login">Log in</button>
+    <div class="container">
+        <input type="text" placeholder="Email" v-model="email"/>
+        <input type="password" placeholder="Password" v-model="password"/>
+        <button @click="login">Log in</button>
+    </div>
+    
 </template>
 
 <script setup>
@@ -44,5 +47,7 @@ const login = () => {
 </script>
 
 <style>
-
+    h1{text-align: center;}
+    h2{text-align: center;}
+    div{text-align: center;}
 </style>

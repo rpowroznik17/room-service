@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from './router'
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -25,3 +27,11 @@ app.use(router)
 app.mount('#app')
 
 export { db }
+window.onload = () => {
+  'use strict';
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('./sw.js');
+  }
+}
