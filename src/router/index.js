@@ -61,6 +61,14 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       },
+    },
+    {
+      path: "/bookinghistory",
+      name: "BookingHistory",
+      component: () => import('../views/BookingHistory.vue'),
+      meta: {
+        requiresAuth: true,
+      },
     }
   ]
 })
