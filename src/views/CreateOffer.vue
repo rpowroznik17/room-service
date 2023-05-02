@@ -1,4 +1,5 @@
 <template>
+  <router-link to="/menu">Go back to menu</router-link>
   <h1>Create an Offer</h1>
   <input type="text" placeholder="Title" v-model="title" required />
   <input type="number" placeholder="Max amount of people" v-model="max_amount_of_people" required/>
