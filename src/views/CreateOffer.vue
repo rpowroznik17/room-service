@@ -36,7 +36,7 @@ const handleFileUpload = (event) => {
   const file = event.target.files[0];
 
   // Create a storage reference with a unique filename
-  const storageRef = refStorage(storage, "images/" + file.name);
+  const storageRef = refStorage(storage, "images/" + Date.now() + file.name);
 
   // Upload the file to Firebase Storage
   uploadBytes(storageRef, file)
