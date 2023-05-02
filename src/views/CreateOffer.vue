@@ -63,7 +63,8 @@ const createOffer = () => {
     imageURL: imageUrl.value,
   })
     .then((data) => {
-      console.log("Successfully placed an offer");
+      navigator.vibrate(1000);
+      alert("Successfully placed an offer!")
       router.push("/menu");
     })
     .catch((error) => {
