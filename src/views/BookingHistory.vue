@@ -4,7 +4,7 @@
     <h2>My reservations:</h2>
     <ul>
       <li v-for="booking in bookings" :key="booking.id">
-        <h3>{{ booking.offer.title }}</h3>
+        <h3>{{ offers[booking.offer].title }}</h3>
         <p>Nights: {{ booking.nights }}</p>
         <p>Total price: {{ booking.total_price }} zł</p>
         <p>Rating:</p>
@@ -26,8 +26,10 @@ export default {
   data() {
     return {
       bookings: [],
+      offers: {}
     };
   },
+
 
   async created() {
     const auth = getAuth();
@@ -43,9 +45,19 @@ export default {
           bookings.push(booking);
         });
         this.bookings = bookings;
+
+        const offersRef = collection(db, "offers");
+        const offersSnapshot = await getDocs(offersRef);
+        const offers = {};
+        offersSnapshot.forEach((doc) => {
+          const offer = doc.data();
+          offers[doc.id] = offer;
+        });
+        this.offers = offers;
       }
     });
   },
+
 
   methods: {
     async submitReview(booking) {
