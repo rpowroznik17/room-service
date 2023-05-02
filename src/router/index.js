@@ -46,6 +46,38 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    {
+      path: '/offers',
+      name: 'Offers',
+      component: () => import('../views/Offers.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/offers/:id",
+      name: "OfferDetails",
+      component: () => import('../views/OfferDetails.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/bookinghistory",
+      name: "BookingHistory",
+      component: () => import('../views/BookingHistory.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/usersoffers",
+      name: "UsersOffers",
+      component: () => import('../views/UsersOffers.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    }
   ]
 })
 
