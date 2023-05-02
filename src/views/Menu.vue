@@ -3,6 +3,7 @@
     <router-link to="/create-offer">CreateOffer</router-link> |
     <router-link to="/offers">Offers</router-link> |
     <router-link to="/bookinghistory">Check your booking history</router-link> |
+    <router-link to="/usersoffers">Check you offers</router-link> |
     <button @click="handleSignOut" v-if="isLoggedIn">Logout</button>
 </template>
 
