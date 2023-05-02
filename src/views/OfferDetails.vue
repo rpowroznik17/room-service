@@ -61,7 +61,8 @@ export default {
       };
       try {
         const docRef = await addDoc(collection(db, "bookings"), booking);
-        console.log("Booking created with ID: ", docRef.id);
+        navigator.vibrate(1000);
+        alert("Congratulations! You have booked a room. Reservation ID: " + docRef.id)
         this.router.push("/offers");
       } catch (e) {
         console.error("Error adding booking: ", e);
