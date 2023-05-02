@@ -5,21 +5,21 @@
   <input type="number" placeholder="Max amount of people" v-model="max_amount_of_people" required/>
   <input type="number" placeholder="Price per night" v-model="price_per_night" required/>
   <textarea placeholder="Description" v-model="description"></textarea>
-  <div>
-    <input type="file" @change="handleFileUpload" />
-    <img :src="imageUrl" v-if="imageUrl" />
-  </div>
+
+  <input type="file" @change="handleFileUpload"/>
+  <img :src="imageUrl" v-if="imageUrl" />
+
   <div id="map" style="width: 900px; height: 580px"></div>
 <button @click="createOffer">Finish</button>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { onMounted, ref } from "vue";
 import { getAuth } from "firebase/auth";
 import { addDoc, collection, GeoPoint } from "firebase/firestore";
+import { ref as refStorage, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useRouter } from "vue-router";
-import { db } from "../main.js";
+import { db, storage } from "../main.js";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -36,12 +36,12 @@ const handleFileUpload = (event) => {
   const file = event.target.files[0];
 
   // Create a storage reference with a unique filename
-  const storageRef = ref(getStorage(), `images/${Date.now()}_${file.name}`);
+  const storageRef = refStorage(storage, "images/" + file.name);
 
   // Upload the file to Firebase Storage
   uploadBytes(storageRef, file)
-    .then((snapshot) => {
-      snapshot.ref.getDownloadURL().then((downloadURL) => {
+    .then(() => {
+      getDownloadURL(storageRef).then((downloadURL) => {
         imageUrl.value = downloadURL;
       });
     })
@@ -50,6 +50,7 @@ const handleFileUpload = (event) => {
       alert("Failed to upload image");
     });
 };
+
 const createOffer = () => {
   const auth = getAuth();
   addDoc(collection(db, "offers"), {
@@ -70,6 +71,7 @@ const createOffer = () => {
       alert(error.message);
     });
 };
+
 onMounted(() => {
   navigator.geolocation.getCurrentPosition((position) => {
     const { latitude, longitude } = position.coords;
