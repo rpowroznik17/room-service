@@ -10,6 +10,7 @@
     <p><button v-on:click="counter > 0 ? counter -= 1 : null" :disabled="counter == 0">-</button></p>
     <p>Nights: {{ counter }}</p>
     <p>Total price: {{ totalPrice }}</p>
+    <div id="map" style="width: 900px; height: 580px"></div>
     <p><button @click="bookOffer">Book Now</button></p>
   </div>
 </template>
@@ -19,6 +20,8 @@ import { getDoc, doc, addDoc, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "vue-router";
 import { ref, getDownloadURL } from "firebase/storage";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 export default {
     data() {
       return {
@@ -51,6 +54,26 @@ export default {
     } else {
       console.log("Error");
     }
+  },
+
+  mounted() {
+    const { latitude, longitude } = this.offer.location;
+    // Show a map centered at latitude / longitude.
+    var mapOptions = {
+      center: [latitude, longitude],
+      zoom: 10,
+    };
+
+    var map = new L.map("map", mapOptions);
+
+    var layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+
+    map.addLayer(layer);
+
+    var marker = L.marker([latitude, longitude]);
+         
+    // Adding marker to the map
+    marker.addTo(map);
   },
 
   methods: {

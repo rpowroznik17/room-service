@@ -87,9 +87,16 @@ onMounted(() => {
 
     map.addLayer(layer);
 
+    var marker = null;
+
     map.on("click", (event) => {
+      if (marker != null) {
+        map.removeLayer(marker);
+      }
       locationLatitude = event.latlng.lat;
       locationLongitude = event.latlng.lng;
+      marker = new L.Marker([locationLatitude, locationLongitude]);
+      map.addLayer(marker);
     });
   });
 });
