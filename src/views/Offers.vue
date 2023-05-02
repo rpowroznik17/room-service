@@ -4,7 +4,8 @@
   <div>
     <ul>
       <li v-for="offer in offers" :key="offer.id">
-        <h2>{{ offer.title }}</h2>
+        <h2>{{ offer.title }}</h2> 
+        
         <p>Price per night: {{ offer.price_per_night }} zł</p>
         <p> Max amount of people: {{ offer.max_amount_of_people }}</p>
         <p>Description: {{ offer.description }}</p>
