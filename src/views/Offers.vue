@@ -1,19 +1,26 @@
 <template>
-  <router-link to="/menu">Go back to menu</router-link>
-  <h1>Find your perfect accomodation</h1>
-  <div>
-    <ul>
-      <li v-for="offer in offers" :key="offer.id">
-        <h2>{{ offer.title }}</h2>
-        <p>Price per night: {{ offer.price_per_night }} zł</p>
-        <p>Max amount of people: {{ offer.max_amount_of_people }}</p>
-        <p>Description: {{ offer.description }}</p>
-        <img v-if="offer.imageURL" :src="offer.imageURL" alt="Offer Image">
-        <router-link :to="{ name: 'OfferDetails', params: { id: offer.id } }">
-          Check offer
-        </router-link>
-      </li>
-    </ul>
+  <div class="container-md">  
+    <h1>Find your perfect accomodation</h1>
+    <div class="container">
+      <div>
+      <ul class="list-group no-dot">
+        <li v-for="offer in offers" :key="offer.id">
+          <h1 class="text-center">{{ offer.title }}</h1>
+          <div class="container w-25 float-start">
+            <p class="text-left">Price per night: {{ offer.price_per_night }} zł</p>
+            <p class="text-left">Max amount of people: {{ offer.max_amount_of_people }}</p>
+            <p class="text-left">Description: {{ offer.description }}</p>
+          </div>
+          <div class="container w-75 float-end">
+            <img v-if="offer.imageURL" :src="offer.imageURL" alt="Offer Image" class="img-fluid mx-auto mb-3">
+          </div>
+          <router-link :to="{ name: 'OfferDetails', params: { id: offer.id } }" class="btn w-100 btn-dark mb-5">
+            Check offer
+          </router-link>
+        </li>
+      </ul>
+      </div>
+    </div>
   </div>
 </template>
 <script>

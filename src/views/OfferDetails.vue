@@ -1,18 +1,25 @@
 <template>
-  <div>
-    <router-link to="/offers">Go back to offers</router-link>
-    <h1>{{ offer.title }}</h1>
-    <img :src="offer.imageURL" alt="Offer Image" v-if="offer.imageURL">
-    <p>Price per night: {{ offer.price_per_night }} zł</p>
-    <p>Max amount of people: {{ offer.max_amount_of_people }}</p>
-    <p>{{ offer.description }}</p>
-    <p><button v-on:click="counter += 1">+</button></p>
-    <p><button v-on:click="counter > 0 ? counter -= 1 : null" :disabled="counter == 0">-</button></p>
-    <p>Nights: {{ counter }}</p>
-    <p>Total price: {{ totalPrice }}</p>
-    <div id="map" style="width: 900px; height: 580px"></div>
-    <p><button @click="bookOffer">Book Now</button></p>
-  </div>
+    <div class="container-mb mx-auto" style="max-width: 80%">
+      <div class = "text-center">        
+      <h1>{{ offer.title }}</h1>
+      <img :src="offer.imageURL" alt="Offer Image" class="img-fluid mx-auto mb-3" v-if="offer.imageURL">
+      </div>
+      <h5>Description</h5>
+      <p>{{ offer.description }}</p>
+      <h5>{{ offer.price_per_night }} PLN/night</h5>
+      <p>Max amount of people: {{ offer.max_amount_of_people }}</p>
+      <div class = "">
+        <p style="display: inline;">Nights: {{ counter }}</p>   
+        <button class="my-3 w-25 btn btn-dark" v-on:click="counter += 1">+</button>
+        <button style="display: inline;" class="my-3 w-25 btn btn-dark" v-on:click="counter > 0 ? counter -= 1 : null" :disabled="counter == 0">-</button>
+      </div>   
+      <h5>Total price: {{ totalPrice }}</h5>
+      <div id="map" class="img-fluid mx-auto mb-3" style="width: 900px; height: 580px"></div>
+      <div class = "text-center">        
+
+        <button type="button" class="my-3 w-75 btn btn-dark" @click="bookOffer">Book now</button>
+      </div>
+    </div>
 </template>
 <script>
 import { db, storage } from "../main.js";

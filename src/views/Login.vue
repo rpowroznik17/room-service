@@ -1,10 +1,19 @@
 <template>
-    <h1>Log in to an Account</h1>
-    <p v-if="errorMsg">{{ errorMsg }}</p>
-    <input type="text" placeholder="Email" v-model="email"/>
-    <input type="password" placeholder="Password" v-model="password"/>
-    <button @click="login">Log in</button>
-    <button @click="signInWithGoogle">Sign in with Google</button>
+  <div class="container-md text-center pt-2">  
+        <p v-if="errorMsg">{{ errorMsg }}</p>
+        <h2>Enter your credentials</h2>
+        <div class="row pb-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Email" v-model="email"/>
+            </div>
+            <div class="col">
+                <input type="password" class="form-control" placeholder="Password" v-model="password"/>
+            </div>
+        </div>
+        <button @click="login" type="button" class="btn w-75 btn-dark">Log in</button><br>
+        <h4 class = "pt-2 pb-2">Or</h4>
+        <button @click="signInWithGoogle" type="button" class="btn w-75 btn-dark">Sign in with Google</button>
+  </div>
 </template>
 
 <script setup>
