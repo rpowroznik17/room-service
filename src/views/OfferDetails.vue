@@ -2,16 +2,18 @@
     <div class="container-mb mx-auto" style="max-width: 80%">
       <div class = "text-center">        
       <h1>{{ offer.title }}</h1>
-      <img :src="offer.imageURL" alt="Offer Image" class="img-fluid mx-auto mb-3" v-if="offer.imageURL">
+      <img :src="offer.imageURL" alt="Offer Image" class="img-fluid mx-auto mb-3" style="width:100%" v-if="offer.imageURL">
       </div>
       <h5>Description</h5>
       <p>{{ offer.description }}</p>
       <h5>{{ offer.price_per_night }} PLN/night</h5>
       <p>Max amount of people: {{ offer.max_amount_of_people }}</p>
-      <div class = "">
-        <p style="display: inline;">Nights: {{ counter }}</p>   
-        <button class="my-3 w-25 btn btn-dark" v-on:click="counter += 1">+</button>
+      <div class = "container text-center">
+        <p>Nights: {{ counter }}</p>
+        <div class="container text-center">   
+        <button class="my-3 w-25 btn btn-dark text-center" v-on:click="counter += 1">+</button>
         <button style="display: inline;" class="my-3 w-25 btn btn-dark" v-on:click="counter > 0 ? counter -= 1 : null" :disabled="counter == 0">-</button>
+        </div>
       </div>   
       <h5>Total price: {{ totalPrice }}</h5>
       <div id="map" class="img-fluid mx-auto mb-3" style="width: 900px; height: 580px"></div>

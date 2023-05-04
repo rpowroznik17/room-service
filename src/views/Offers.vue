@@ -1,18 +1,17 @@
 <template>
   <div class="container-md">  
-    <h1>Find your perfect accomodation</h1>
+    <h1 class="text-center">Find your perfect accomodation</h1>
     <div class="container">
       <div>
       <ul class="list-group no-dot">
         <li v-for="offer in offers" :key="offer.id">
           <h1 class="text-center">{{ offer.title }}</h1>
-          <div class="container w-25 float-start">
-            <p class="text-left">Price per night: {{ offer.price_per_night }} zł</p>
-            <p class="text-left">Max amount of people: {{ offer.max_amount_of_people }}</p>
-            <p class="text-left">Description: {{ offer.description }}</p>
+          <div class="text-center">
+            <h6 class="d-inline">Price per night: {{ offer.price_per_night }} zł</h6> | 
+            <h6 class="d-inline">Max amount of people: {{ offer.max_amount_of_people }}</h6>
           </div>
-          <div class="container w-75 float-end">
-            <img v-if="offer.imageURL" :src="offer.imageURL" alt="Offer Image" class="img-fluid mx-auto mb-3">
+          <div>
+            <img v-if="offer.imageURL" :src="offer.imageURL" alt="Offer Image" class="img-fluid mx-auto mb-3" style="width:100%">
           </div>
           <router-link :to="{ name: 'OfferDetails', params: { id: offer.id } }" class="btn w-100 btn-dark mb-5">
             Check offer
