@@ -16,9 +16,8 @@
         </div>
       </div>   
       <h5>Total price: {{ totalPrice }}</h5>
-      <div id="map" class="img-fluid mx-auto mb-3" style="width: 900px; height: 580px"></div>
       <div class = "text-center">        
-
+        <!--<div id="map" class="img-fluid mx-auto mb-3" style="width: 900px; height: 580px"></div> working on local, not on firebase -->
         <button type="button" class="my-3 w-75 btn btn-dark" @click="bookOffer">Book now</button>
       </div>
     </div>
@@ -64,7 +63,7 @@ export default {
       console.log("Error");
     }
   },
-
+// Map code, working on localhost, not working on firebase
   mounted() {
     const { latitude, longitude } = this.offer.location;
     // Show a map centered at latitude / longitude.
@@ -81,13 +80,6 @@ export default {
 
     var marker = L.marker([latitude, longitude]);
 
-    map.on("load", () => {
-  console.log("Map loaded successfully");
-    });
-
-  map.on("error", (error) => {
-  console.error(error);
-    }); 
     // Adding marker to the map
     marker.addTo(map);
   },
