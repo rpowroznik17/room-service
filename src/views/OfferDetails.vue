@@ -80,7 +80,14 @@ export default {
     map.addLayer(layer);
 
     var marker = L.marker([latitude, longitude]);
-         
+
+    map.on("load", () => {
+  console.log("Map loaded successfully");
+    });
+
+  map.on("error", (error) => {
+  console.error(error);
+    }); 
     // Adding marker to the map
     marker.addTo(map);
   },
