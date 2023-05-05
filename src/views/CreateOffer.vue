@@ -1,16 +1,24 @@
 <template>
-  <router-link to="/menu">Go back to menu</router-link>
-  <h1>Create an Offer</h1>
-  <input type="text" placeholder="Title" v-model="title" required />
-  <input type="number" placeholder="Max amount of people" v-model="max_amount_of_people" required/>
-  <input type="number" placeholder="Price per night" v-model="price_per_night" required/>
-  <textarea placeholder="Description" v-model="description"></textarea>
+  <div class="container-md text-center">  
+    <h1>Create an offer</h1>
+    <div class="row pb-3">
+      <input type="text" class="form-control" placeholder="Title" v-model="title" required />
+    </div>  
+    <div class="row pb-3">
+      <input type="number" class="form-control" placeholder="Max amount of people" v-model="max_amount_of_people" required/>
+    </div>
+    <div class="row pb-3">
 
-  <input type="file" @change="handleFileUpload"/>
-  <img :src="imageUrl" v-if="imageUrl" />
+      <input type="number" class="form-control" placeholder="Price per night" v-model="price_per_night" required/>
+    </div>  
+    <textarea placeholder="Description" class="form-control" v-model="description"></textarea>
+    <p class=mt-3>Upload a file:</p>
+    <input class="btn w-75 btn-dark" type="file" @change="handleFileUpload"/>
+    <img :src="imageUrl" class="img-fluid mx-auto mb-3" style="width:100%" v-if="imageUrl" />
 
-  <div id="map" style="width: 900px; height: 580px"></div>
-<button @click="createOffer">Finish</button>
+    <div id="map" class="img-fluid mx-auto mb-3 mt-3"  style="width: 900px; height: 580px"></div>
+    <button class="my-3 w-75 btn btn-dark" @click="createOffer">Post offer</button>
+  </div>
 </template>
 
 <script setup>

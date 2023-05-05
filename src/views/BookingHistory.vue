@@ -1,22 +1,24 @@
 <template>
-  <router-link to="/menu">Go back to menu</router-link>
-  <div>
-    <h2>My reservations:</h2>
-    <ul>
-      <li v-for="booking in bookings" :key="booking.id">
-        <h3>{{ offers[booking.offer].title }}</h3>
-        <p>Nights: {{ booking.nights }}</p>
-        <p>Total price: {{ booking.total_price }} zł</p>
-        <p>Rating:</p>
-        <input type="number" min="1" max="5" v-model="booking.rating">
-        <p>Describe:</p>
-        <textarea v-model="booking.review"></textarea>
-        <button @click="submitReview(booking)">Save opinion</button>
-      </li>
-    </ul>
+  <div class="container-md">  
+    <div>
+      <h2 class="text-center">My reservations:</h2>
+      <ul class="list-group no-dot">
+        <li v-for="booking in bookings" :key="booking.id">
+          <h3 class="text-center">{{ offers[booking.offer].title }}</h3>
+          <p>Nights: {{ booking.nights }}</p>
+          <p class="pb-2">Total price: {{ booking.total_price }} zł</p>
+          <p class="d-inline">Rating (1-5):</p>
+          <input class="d-inline pb-2" type="number" min="1" max="5" v-model="booking.rating">
+          <p>Describe:</p>
+          <textarea class="form-control pb-2 mb-2" v-model="booking.review"></textarea>
+          <div class="text-center">
+          <button class="btn w-75 btn-dark" @click="submitReview(booking)">Save opinion</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
-
 <script>
 import { db } from "../main.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

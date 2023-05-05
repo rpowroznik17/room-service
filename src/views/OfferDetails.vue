@@ -1,18 +1,26 @@
 <template>
-  <div>
-    <router-link to="/offers">Go back to offers</router-link>
-    <h1>{{ offer.title }}</h1>
-    <img :src="offer.imageURL" alt="Offer Image" v-if="offer.imageURL">
-    <p>Price per night: {{ offer.price_per_night }} zł</p>
-    <p>Max amount of people: {{ offer.max_amount_of_people }}</p>
-    <p>{{ offer.description }}</p>
-    <p><button v-on:click="counter += 1">+</button></p>
-    <p><button v-on:click="counter > 0 ? counter -= 1 : null" :disabled="counter == 0">-</button></p>
-    <p>Nights: {{ counter }}</p>
-    <p>Total price: {{ totalPrice }}</p>
-    <div id="map" style="width: 900px; height: 580px"></div>
-    <p><button @click="bookOffer">Book Now</button></p>
-  </div>
+    <div class="container-mb mx-auto" style="max-width: 80%">
+      <div class = "text-center">        
+      <h1>{{ offer.title }}</h1>
+      <img :src="offer.imageURL" alt="Offer Image" class="img-fluid mx-auto mb-3" style="width:100%" v-if="offer.imageURL">
+      </div>
+      <h5>Description</h5>
+      <p>{{ offer.description }}</p>
+      <h5>{{ offer.price_per_night }} PLN/night</h5>
+      <p>Max amount of people: {{ offer.max_amount_of_people }}</p>
+      <div class = "container text-center">
+        <p>Nights: {{ counter }}</p>
+        <div class="container text-center">   
+        <button class="my-3 w-25 btn btn-dark text-center" v-on:click="counter += 1">+</button>
+        <button style="display: inline;" class="my-3 w-25 btn btn-dark" v-on:click="counter > 0 ? counter -= 1 : null" :disabled="counter == 0">-</button>
+        </div>
+      </div>   
+      <h5>Total price: {{ totalPrice }}</h5>
+      <div class = "text-center">        
+        <!--<div id="map" class="img-fluid mx-auto mb-3" style="width: 900px; height: 580px"></div> working on local, not on firebase -->
+        <button type="button" class="my-3 w-75 btn btn-dark" @click="bookOffer">Book now</button>
+      </div>
+    </div>
 </template>
 <script>
 import { db, storage } from "../main.js";
@@ -55,7 +63,7 @@ export default {
       console.log("Error");
     }
   },
-
+// Map code, working on localhost, not working on firebase
   mounted() {
     const { latitude, longitude } = this.offer.location;
     // Show a map centered at latitude / longitude.
@@ -71,7 +79,7 @@ export default {
     map.addLayer(layer);
 
     var marker = L.marker([latitude, longitude]);
-         
+
     // Adding marker to the map
     marker.addTo(map);
   },

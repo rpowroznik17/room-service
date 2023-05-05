@@ -1,11 +1,25 @@
 <template>
-    <h1>Create an Account</h1>
-    <input type="text" placeholder="Email" v-model="email"/>
-    <input type="password" placeholder="Password" v-model="password"/>
-    <input type="text" placeholder="Name" v-model="name"/>
-    <input type="text" placeholder="Surname" v-model="surname"/>
-    <input type="text" placeholder="Bio" v-model="bio"/>
-    <button @click="register">Submit</button>
+  <div class="container-md text-center">  
+      <h1>Create your account</h1>
+      <div class="row pb-3">
+         <div class="col">
+            <input type="text" class="form-control" placeholder="Email" v-model="email"/>
+         </div>
+         <div class="col">
+            <input type="password" class="form-control" placeholder="Password" v-model="password"/>
+         </div>
+      </div>
+      <div class="row pb-3">
+         <div class="col">
+            <input type="text" class="form-control" placeholder="Name" v-model="name"/>
+         </div>
+         <div class="col">
+            <input type="text" class="form-control" placeholder="Surname" v-model="surname"/>
+         </div>
+      </div>
+      <input type="text" class="form-control form-control-lg pb-5 mb-2" placeholder="Bio" v-model="bio"/>
+      <button @click="register" class="btn w-75 btn-dark">Create account</button>
+   </div>
 </template>
 
 <script setup>
